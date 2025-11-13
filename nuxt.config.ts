@@ -1,5 +1,18 @@
-// https://nuxt.com/docs/api/configuration/nuxt-config
+import tailwindcss from "@tailwindcss/vite";
+
+// nuxt.config.ts
 export default defineNuxtConfig({
-  compatibilityDate: '2025-07-15',
-  devtools: { enabled: true }
+  typescript: {
+    strict: true,
+  },
+  app: {
+    head: {
+      title: 'huraicid - Twitter Search Commands',
+    },
+  },
+  css: ['@/assets/css/main.css'],
+  modules: ['@nuxt/ui'],
+  vite: {
+    plugins: [tailwindcss()],
+  },
 })
