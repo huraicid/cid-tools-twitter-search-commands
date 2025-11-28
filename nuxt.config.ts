@@ -16,4 +16,8 @@ export default defineNuxtConfig({
   vite: {
     plugins: [tailwindcss()],
   },
+  routeRules: {
+    // Nitro が /tools/... 配下で正しく動作するようにする
+    '/tools/cid-tools-twitter-search-commands/**': { proxy: '' }
+  },
 })
