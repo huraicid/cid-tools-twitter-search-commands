@@ -7,83 +7,85 @@
         </h1>
 
         <div class="form-group mx-auto my-4">
+          <form @submit.prevent="generateCommand()" autocomplete="off" spellcheck="false">
           <h2 class="subtitle mb-2">Conditions</h2>
           <!-- Twitter Account ID Input Field -->
           <div id="account-id" class="mb-4">
             <label for="accountId" class="block text-sm font-medium mb-1">Twitter Account ID (Numeric)</label>
-            <input type="text" id="accountId" v-model="accountId" class="p-2 w-md
+            <input type="text" id="accountId" :value="accountId" @input="handleInput(accountId)" class="p-2 w-md
               border border-gray-300 rounded" placeholder="e.g., 44196397 for @elonmusk" autocomplete="off"
-              spellcheck="false" data-gramm="false" autocapitalize="off" />
+              spellcheck="false" autocapitalize="off" name="accountId" data-form="search-params" data-type="social-id" />
           </div>
 
           <!-- Keywords Input Field -->
           <div id="keywords-group" class="mb-4">
             <label for="keywords" class="block text-sm font-medium mb-1">Keywords</label>
-            <input type="text" id="keywords" v-model="keywords" class="p-2 w-md
+            <input type="text" id="keywords" :value="keywords" @input="handleInput(keywords)" class="p-2 w-md
               border border-gray-300 rounded" placeholder="e.g., AI, technology" autocomplete="off" spellcheck="false"
-              data-gramm="false" autocapitalize="off" />
+              autocapitalize="off" name="keywords" data-form="search-params" data-type="search-terms" />
           </div>
 
           <!-- Date Input Field -->
           <div id="date-from" class="mb-4">
             <label for="date" class="block text-sm font-medium mb-1">Date</label>
-            <input type="date" id="date" v-model="dateFrom" class="p-2 w-smd
-              border border-gray-300 rounded" autocomplete="off" spellcheck="false" data-gramm="false"
-              autocapitalize="off" />
+            <input type="date" id="date" :value="dateFrom" @input="handleInput(dateFrom)" class="p-2 w-smd
+              border border-gray-300 rounded" autocomplete="off" spellcheck="false"
+              autocapitalize="off" name="dateFrom" />
             ～
-            <input type="date" id="dateTo" v-model="dateTo" class="p-2 w-smd
-              border border-gray-300 rounded" autocomplete="off" spellcheck="false" data-gramm="false"
-              autocapitalize="off" />
+            <input type="date" id="dateTo" :value="dateTo" @input="handleInput(dateTo)" class="p-2 w-smd
+              border border-gray-300 rounded" autocomplete="off" spellcheck="false"
+              autocapitalize="off" name="dateTo" />
           </div>
 
           <!-- Favorites Input Field -->
           <div id="favorites" class="mb-4">
             <label for="favorites" class="block text-sm font-medium mb-1">Favorites</label>
-            <input type="number" id="favorite-min" v-model="favoriteMin" class="p-2 w-smd
-              border border-gray-300 rounded" placeholder="default: -inf" autocomplete="off" spellcheck="false"
-              data-gramm="false" autocapitalize="off" />
+            <input type="number" id="favorite-min" :value="favoriteMin" @input="handleInput(favoriteMin)" class="p-2 w-smd
+              border border-gray-300 rounded" placeholder="default: 0" autocomplete="off" spellcheck="false"
+              autocapitalize="off" name="favoriteMin" />
             ～
-            <input type="number" id="favorite-max" v-model="favoriteMax" class="p-2 w-smd
+            <input type="number" id="favorite-max" :value="favoriteMax" @input="handleInput(favoriteMax)" class="p-2 w-smd
               border border-gray-300 rounded" placeholder="default: +inf" autocomplete="off" spellcheck="false"
-              data-gramm="false" autocapitalize="off" />
+              autocapitalize="off" name="favoriteMax" />
           </div>
 
           <!-- Retweets Input Field -->
           <div id="retweets" class="mb-4">
             <label for="retweets" class="block text-sm font-medium mb-1">Retweets</label>
-            <input type="number" id="retweet-min" v-model="retweetMin" class="p-2 w-smd
-              border border-gray-300 rounded" placeholder="default: -inf" autocomplete="off" spellcheck="false"
-              data-gramm="false" autocapitalize="off" />
+            <input type="number" id="retweet-min" :value="retweetMin" @input="handleInput(retweetMin)" class="p-2 w-smd
+              border border-gray-300 rounded" placeholder="default: 0" autocomplete="off" spellcheck="false"
+              autocapitalize="off" name="retweetMin" />
             ～
-            <input type="number" id="retweet-max" v-model="retweetMax" class="p-2 w-smd
+            <input type="number" id="retweet-max" :value="retweetMax" @input="handleInput(retweetMax)" class="p-2 w-smd
               border border-gray-300 rounded" placeholder="default: +inf" autocomplete="off" spellcheck="false"
-              data-gramm="false" autocapitalize="off" />
+              autocapitalize="off" name="retweetMax" />
           </div>
 
           <!-- Replies Input Field -->
           <div id="replies" class="mb-4">
             <label for="replies" class="block text-sm font-medium mb-1">Replies</label>
-            <input type="number" id="reply-min" v-model="replyMin" class="p-2 w-smd
-              border border-gray-300 rounded" placeholder="default: -inf" autocomplete="off" spellcheck="false"
-              data-gramm="false" autocapitalize="off" />
+            <input type="number" id="reply-min" :value="replyMin" @input="handleInput(replyMin)" class="p-2 w-smd
+              border border-gray-300 rounded" placeholder="default: 0" autocomplete="off" spellcheck="false"
+              autocapitalize="off" name="replyMin" />
             ～
-            <input type="number" id="reply-max" v-model="replyMax" class="p-2 w-smd
+            <input type="number" id="reply-max" :value="replyMax" @input="handleInput(replyMax)" class="p-2 w-smd
               border border-gray-300 rounded" placeholder="default: +inf" autocomplete="off" spellcheck="false"
-              data-gramm="false" autocapitalize="off" />
+              autocapitalize="off" name="replyMax" />
           </div>
 
           <div class="button-container my-4">
-            <button id="generateBtn" @click="generateCommand"
+            <button id="generateBtn" type="submit"
               class="px-4 py-2 bg-blue-500 text-white rounded hover:bg-blue-600">
               Generate Search Command
             </button>
           </div>
+          </form>
         </div>
 
         <div class="search-result mx-auto my-4 p-4">
           <h2 class="subtitle mb-2">Search Command Result</h2>
-          <textarea id="result" v-model="result" class="w-full h-32 p-2 border border-gray-300 rounded"
-            autocomplete="off" spellcheck="false" data-gramm="false" autocapitalize="off"></textarea>
+          <textarea id="result" :value="result" @input="result = $event.target.value" class="w-full h-32 p-2 border border-gray-300 rounded"
+            autocomplete="off" spellcheck="false" autocapitalize="off" name="result" readonly role="textbox" aria-label="Generated search command"></textarea>
           
             <div class="note mt-4 p-2 bg-yellow-100 border-l-4 border-yellow-500 text-yellow-700">
             <p class="text-sm">
@@ -101,7 +103,7 @@
 </template>
 
 <script>
-import { ref } from 'vue';
+import { ref, nextTick, onMounted } from 'vue';
 
 export default {
   setup() {
@@ -118,12 +120,36 @@ export default {
     const replyMax = ref('');
     const result = ref('');
 
+    // ブラウザ拡張機能との競合を避けるために、DOM更新後に少し待つ
+    const updateValue = (refObj, value) => {
+      try {
+        if (refObj && refObj.value !== undefined) {
+          refObj.value = value;
+        }
+      } catch (error) {
+        console.warn('Error updating value:', error);
+      }
+    };
+
+    // より安全なイベントハンドラー
+    const handleInput = (refObj) => {
+      return (event) => {
+        try {
+          if (event && event.target) {
+            updateValue(refObj, event.target.value);
+          }
+        } catch (error) {
+          console.warn('Error handling input:', error);
+        }
+      };
+    };
+
     const generateCommand = () => {
       const commandParts = [];
 
       // Account ID
       const acc = typeof accountId.value === 'string' ? accountId.value.trim() : '';
-      if (acc) commandParts.push(`from:${acc}`);
+      if (acc) commandParts.push(`from:${acc.replace(/@/g, '')}`);
 
       // Keywords
       const kw = typeof keywords.value === 'string' ? keywords.value.trim() : '';
@@ -134,19 +160,51 @@ export default {
       if (dateTo.value) commandParts.push(`until:${dateTo.value}`);
 
       // Favorites
-      if (favoriteMin.value !== '') commandParts.push(`min_faves:${favoriteMin.value}`);
-      if (favoriteMax.value !== '') commandParts.push(`max_faves:${favoriteMax.value}`);
+      if (favoriteMin.value !== '') {
+        let min = parseInt(favoriteMin.value, 10);
+        if (isNaN(min) || min < 0) min = 0;
+        commandParts.push(`min_faves:${min}`);
+      }
+      if (favoriteMax.value !== '') { 
+        let max = parseInt(favoriteMax.value, 10);
+        if (isNaN(max) || max < 0) max = 0;
+        commandParts.push(`max_faves:${max}`);
+      }
 
       // Retweets
-      if (retweetMin.value !== '') commandParts.push(`min_retweets:${retweetMin.value}`);
-      if (retweetMax.value !== '') commandParts.push(`max_retweets:${retweetMax.value}`);
+      if (retweetMin.value !== '') {
+        let min = parseInt(retweetMin.value, 10);
+        if (isNaN(min) || min < 0) min = 0;
+        commandParts.push(`min_retweets:${min}`);
+      }
+      if (retweetMax.value !== '') {  
+        let max = parseInt(retweetMax.value, 10);
+        if (isNaN(max) || max < 0) max = 0;
+        commandParts.push(`max_retweets:${max}`);
+      }
 
       // Replies
-      if (replyMin.value !== '') commandParts.push(`min_replies:${replyMin.value}`);
-      if (replyMax.value !== '') commandParts.push(`max_replies:${replyMax.value}`);
+      if (replyMin.value !== '') {
+        let min = parseInt(replyMin.value, 10);
+        if (isNaN(min) || min < 0) min = 0;
+        commandParts.push(`min_replies:${min}`);
+      }
+      if (replyMax.value !== '') {
+        let max = parseInt(replyMax.value, 10);
+        if (isNaN(max) || max < 0) max = 0;
+        commandParts.push(`max_replies:${max}`);
+      }
 
-      result.value = commandParts.join(' ');
+      updateValue(result, commandParts.join(' '));
     };
+
+    // コンポーネントマウント後にフォームを安定化
+    onMounted(() => {
+      nextTick(() => {
+        // ブラウザ拡張機能がDOMを認識する時間を確保
+        console.log('Form initialized');
+      });
+    });
 
     return {
       accountId,
@@ -161,6 +219,8 @@ export default {
       replyMax,
       result,
       generateCommand,
+      updateValue,
+      handleInput,
     };
   },
 };

@@ -1,0 +1,48 @@
+name: Deploy Nuxt Home
+
+on:
+  push:
+    branches: [ main ] # ← mainブランチにpushされたらデプロイ
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 20
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Build for production (SSR)
+        run: npm run build
+
+      - name: Upload files to VPS
+        uses: appleboy/scp-action@v0.1.4
+        with:
+          host: ${{ secrets.VPS_HOST }}
+          username: ${{ secrets.VPS_USER }}
+          port: ${{ secrets.VPS_SSH_PORT }}
+          key: ${{ secrets.VPS_SSH_KEY }}
+          source: ".output"
+          target: "/var/www/tools/cid-tools-twitter-search-commands"
+
+      - name: Restart service on VPS
+        uses: appleboy/ssh-action@v0.1.10
+        with:
+          host: ${{ secrets.VPS_HOST }}
+          username: ${{ secrets.VPS_USER }}
+          port: ${{ secrets.VPS_SSH_PORT }}
+          key: ${{ secrets.VPS_SSH_KEY }}
+          script_stop: true
+          script: |
+            echo "Restarting cid-tools-twitter-search-commands.service..."
+            sudo -n systemctl restart cid-tools-twitter-search-commands.service
+            echo "Service restarted. Checking status..."
+            sudo -n systemctl status cid-tools-twitter-search-commands.service --no-pager || true
