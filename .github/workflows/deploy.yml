@@ -25,8 +25,11 @@ jobs:
       
       - name: Debug .output
         run: |
-          echo "===== .output contents ====="
-          ls -R .output || echo ".output not found"
+          echo "=== CHECK .output ==="
+          pwd
+          ls -al .
+          ls -al .output || echo ".output not found"
+          ls -R .output || echo ".output empty"
 
       - name: Upload files to VPS
         uses: appleboy/scp-action@v0.1.4
