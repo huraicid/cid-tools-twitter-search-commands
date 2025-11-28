@@ -6,6 +6,7 @@ export default defineNuxtConfig({
     strict: true,
   },
   app: {
+    baseURL: '/tools/cid-tools-twitter-search-commands/',
     head: {
       title: 'huraicid - Twitter Search Commands',
     },
