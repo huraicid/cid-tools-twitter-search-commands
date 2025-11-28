@@ -1,40 +1,20 @@
-import tailwindcss from "@tailwindcss/vite";
-
 export default defineNuxtConfig({
-  ssr: true,
-
-  typescript: {
-    strict: true,
-  },
+  typescript: { strict: true },
 
   app: {
     baseURL: '/tools/cid-tools-twitter-search-commands/',
-    buildAssetsDir: '_nuxt/',
-
-    head: {
-      title: 'huraicid - Twitter Search Commands',
-    },
-  },
-
-  css: ['@/assets/css/main.css'],
-
-  modules: ['@nuxt/ui'],
-
-  vite: {
-    plugins: [tailwindcss()],
+    buildAssetsDir: '_nuxt/',   // ★絶対パスを使わない
   },
 
   nitro: {
-    preset: 'node',
+    preset: 'node'
   },
 
   router: {
-    options: {
-      strict: false,
-    }
+    options: { strict: false }
   },
 
   routeRules: {
     '/**': { ssr: true },
   },
-});
+})
