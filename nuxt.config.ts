@@ -1,7 +1,5 @@
 export default defineNuxtConfig({
-  ssr: true,   // ★これが超重要
-
-  typescript: { strict: true },
+  ssr: true,
 
   app: {
     baseURL: '/tools/cid-tools-twitter-search-commands/',
@@ -9,14 +7,9 @@ export default defineNuxtConfig({
   },
 
   nitro: {
-    preset: 'node',   // nodeサーバーとしてlistenする
+    preset: 'node',
+    serveStatic: true,
   },
 
-  router: {
-    options: { strict: false }
-  },
-
-  routeRules: {
-    '/**': { ssr: true },
-  },
+  router: { options: { strict: false } },
 })
