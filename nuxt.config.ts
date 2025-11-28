@@ -7,6 +7,7 @@ export default defineNuxtConfig({
   },
   app: {
     baseURL: '/tools/cid-tools-twitter-search-commands/',
+    buildAssetsDir: 'assets',
     head: {
       title: 'huraicid - Twitter Search Commands',
     },
@@ -15,6 +16,17 @@ export default defineNuxtConfig({
   modules: ['@nuxt/ui'],
   vite: {
     plugins: [tailwindcss()],
+  },
+  nitro: {
+    preset: 'node',
+    routeRules: {
+      '/tools/cid-tools-twitter-search-commands/**': { prerender: false }
+    }
+  },
+  router: {
+    options: {
+      strict: false,  // ★これが無いと302になる
+    }
   },
   routeRules: {
     // Nitro が /tools/... 配下で正しく動作するようにする
