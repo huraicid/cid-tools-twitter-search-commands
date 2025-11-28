@@ -9,6 +9,7 @@ export default defineNuxtConfig({
 
   app: {
     baseURL: '/tools/cid-tools-twitter-search-commands/',
+    buildAssetsDir: '_nuxt/',
 
     head: {
       title: 'huraicid - Twitter Search Commands',
