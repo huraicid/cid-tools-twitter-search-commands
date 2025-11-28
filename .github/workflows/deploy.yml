@@ -22,6 +22,11 @@ jobs:
 
       - name: Build for production (SSR)
         run: npm run build
+      
+      - name: Debug .output
+        run: |
+          echo "===== .output contents ====="
+          ls -R .output || echo ".output not found"
 
       - name: Upload files to VPS
         uses: appleboy/scp-action@v0.1.4

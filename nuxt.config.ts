@@ -8,9 +8,7 @@ export default defineNuxtConfig({
   },
 
   app: {
-    // SSR のルートは常に /
-    // サブパス対応は Nginx の location で行う
-    buildAssetsDir: '/tools/cid-tools-twitter-search-commands/_nuxt/',
+    baseURL: '/tools/cid-tools-twitter-search-commands/',
 
     head: {
       title: 'huraicid - Twitter Search Commands',
