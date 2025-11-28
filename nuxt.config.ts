@@ -1,13 +1,15 @@
 export default defineNuxtConfig({
+  ssr: true,   // ★これが超重要
+
   typescript: { strict: true },
 
   app: {
     baseURL: '/tools/cid-tools-twitter-search-commands/',
-    buildAssetsDir: '_nuxt/',   // ★絶対パスを使わない
+    buildAssetsDir: '_nuxt/',
   },
 
   nitro: {
-    preset: 'node'
+    preset: 'node',   // nodeサーバーとしてlistenする
   },
 
   router: {
