@@ -25,12 +25,16 @@ export default defineNuxtConfig({
   },
 
   nitro: {
-    preset: 'node-server',
+    preset: 'node',
   },
 
   router: {
     options: {
       strict: false,
     }
+  },
+
+  routeRules: {
+    '/**': { ssr: true },
   },
 });
