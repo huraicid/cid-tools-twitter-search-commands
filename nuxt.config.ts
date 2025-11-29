@@ -7,7 +7,8 @@ export default defineNuxtConfig({
   },
 
   nitro: {
-    preset: 'node',
+    // ★ここを 'node' ではなく 'node-server' にする
+    preset: 'node-server',
     serveStatic: true,
   },
 
