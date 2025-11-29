@@ -10,6 +10,9 @@ export default defineNuxtConfig({
     // ★ここを 'node' ではなく 'node-server' にする
     preset: 'node-server',
     serveStatic: true,
+    prerender: {
+      crawlLinks: false
+    }
   },
 
   router: { options: { strict: false } },
