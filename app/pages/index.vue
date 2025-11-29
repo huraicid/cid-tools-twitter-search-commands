@@ -7,32 +7,53 @@
         </h1>
 
         <div class="form-group mx-auto my-4">
-          <form @submit.prevent="generateCommand()" autocomplete="off" spellcheck="false">
           <h2 class="subtitle mb-2">Conditions</h2>
           <!-- Twitter Account ID Input Field -->
-          <div id="account-id" class="mb-4">
+            <div id="account-id" class="mb-4">
             <label for="accountId" class="block text-sm font-medium mb-1">Twitter Account ID (Numeric)</label>
-            <input type="text" id="accountId" :value="accountId" @input="handleInput(accountId)" class="p-2 w-md
-              border border-gray-300 rounded" placeholder="e.g., 44196397 for @elonmusk" autocomplete="off"
-              spellcheck="false" autocapitalize="off" name="accountId" data-form="search-params" data-type="social-id" />
-          </div>
+            <input
+              type="text"
+              id="accountId"
+              v-model="accountId"
+              @input="handleInput(accountId)"
+              class="p-2 w-full sm:w-3/4 md:w-1/2 lg:w-1/3 max-w-full border border-gray-300 rounded transition-all duration-150"
+              placeholder="e.g., 44196397 for @elonmusk"
+              autocomplete="off"
+              spellcheck="false"
+              autocapitalize="off"
+              name="accountId"
+              data-form="search-params"
+              data-type="social-id"
+            />
+            </div>
 
           <!-- Keywords Input Field -->
-          <div id="keywords-group" class="mb-4">
+          <div id="keywords-group" class="mx-auto mb-4">
             <label for="keywords" class="block text-sm font-medium mb-1">Keywords</label>
-            <input type="text" id="keywords" :value="keywords" @input="handleInput(keywords)" class="p-2 w-md
-              border border-gray-300 rounded" placeholder="e.g., AI, technology" autocomplete="off" spellcheck="false"
-              autocapitalize="off" name="keywords" data-form="search-params" data-type="search-terms" />
+            <input 
+              type="text" 
+              id="keywords" 
+              v-model="keywords" 
+              @input="handleInput(keywords)" 
+              class="p-2 w-full sm:w-3/4 md:w-1/2 lg:w-1/3 max-w-full border border-gray-300 rounded transition-all duration-150"
+              placeholder="e.g., AI, technology" 
+              autocomplete="off" 
+              spellcheck="false"
+              autocapitalize="off" 
+              name="keywords" 
+              data-form="search-params" 
+              data-type="search-terms" 
+              />
           </div>
 
           <!-- Date Input Field -->
-          <div id="date-from" class="mb-4">
+          <div id="date-from" class="mx-auto mb-4">
             <label for="date" class="block text-sm font-medium mb-1">Date</label>
-            <input type="date" id="date" :value="dateFrom" @input="handleInput(dateFrom)" class="p-2 w-smd
+            <input type="date" id="date" v-model="dateFrom" @input="handleInput(dateFrom)" class="p-2 w-smd
               border border-gray-300 rounded" autocomplete="off" spellcheck="false"
               autocapitalize="off" name="dateFrom" />
             ～
-            <input type="date" id="dateTo" :value="dateTo" @input="handleInput(dateTo)" class="p-2 w-smd
+            <input type="date" id="dateTo" v-model="dateTo" @input="handleInput(dateTo)" class="p-2 w-smd
               border border-gray-300 rounded" autocomplete="off" spellcheck="false"
               autocapitalize="off" name="dateTo" />
           </div>
@@ -40,11 +61,11 @@
           <!-- Favorites Input Field -->
           <div id="favorites" class="mb-4">
             <label for="favorites" class="block text-sm font-medium mb-1">Favorites</label>
-            <input type="number" id="favorite-min" :value="favoriteMin" @input="handleInput(favoriteMin)" class="p-2 w-smd
+            <input type="number" id="favorite-min" v-model="favoriteMin" @input="handleInput(favoriteMin)" class="p-2 w-smd
               border border-gray-300 rounded" placeholder="default: 0" autocomplete="off" spellcheck="false"
               autocapitalize="off" name="favoriteMin" />
             ～
-            <input type="number" id="favorite-max" :value="favoriteMax" @input="handleInput(favoriteMax)" class="p-2 w-smd
+            <input type="number" id="favorite-max" v-model="favoriteMax" @input="handleInput(favoriteMax)" class="p-2 w-smd
               border border-gray-300 rounded" placeholder="default: +inf" autocomplete="off" spellcheck="false"
               autocapitalize="off" name="favoriteMax" />
           </div>
@@ -52,11 +73,11 @@
           <!-- Retweets Input Field -->
           <div id="retweets" class="mb-4">
             <label for="retweets" class="block text-sm font-medium mb-1">Retweets</label>
-            <input type="number" id="retweet-min" :value="retweetMin" @input="handleInput(retweetMin)" class="p-2 w-smd
+            <input type="number" id="retweet-min" v-model="retweetMin" @input="handleInput(retweetMin)" class="p-2 w-smd
               border border-gray-300 rounded" placeholder="default: 0" autocomplete="off" spellcheck="false"
               autocapitalize="off" name="retweetMin" />
             ～
-            <input type="number" id="retweet-max" :value="retweetMax" @input="handleInput(retweetMax)" class="p-2 w-smd
+            <input type="number" id="retweet-max" v-model="retweetMax" @input="handleInput(retweetMax)" class="p-2 w-smd
               border border-gray-300 rounded" placeholder="default: +inf" autocomplete="off" spellcheck="false"
               autocapitalize="off" name="retweetMax" />
           </div>
@@ -64,22 +85,21 @@
           <!-- Replies Input Field -->
           <div id="replies" class="mb-4">
             <label for="replies" class="block text-sm font-medium mb-1">Replies</label>
-            <input type="number" id="reply-min" :value="replyMin" @input="handleInput(replyMin)" class="p-2 w-smd
+            <input type="number" id="reply-min" v-model="replyMin" @input="handleInput(replyMin)" class="p-2 w-smd
               border border-gray-300 rounded" placeholder="default: 0" autocomplete="off" spellcheck="false"
               autocapitalize="off" name="replyMin" />
             ～
-            <input type="number" id="reply-max" :value="replyMax" @input="handleInput(replyMax)" class="p-2 w-smd
+            <input type="number" id="reply-max" v-model="replyMax" @input="handleInput(replyMax)" class="p-2 w-smd
               border border-gray-300 rounded" placeholder="default: +inf" autocomplete="off" spellcheck="false"
               autocapitalize="off" name="replyMax" />
           </div>
 
           <div class="button-container my-4">
-            <button id="generateBtn" type="submit"
+            <button id="generateBtn" type="button" @click="generateCommand()"
               class="px-4 py-2 bg-blue-500 text-white rounded hover:bg-blue-600">
               Generate Search Command
             </button>
           </div>
-          </form>
         </div>
 
         <div class="search-result mx-auto my-4 p-4">
