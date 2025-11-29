@@ -16,4 +16,6 @@ export default defineNuxtConfig({
   },
 
   router: { options: { strict: false } },
+
+  css: ['@/assets/css/main.css'],
 })
