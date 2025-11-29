@@ -3,7 +3,7 @@ export default defineNuxtConfig({
 
   app: {
     baseURL: '/tools/cid-tools-twitter-search-commands/',
-    buildAssetsDir: '_nuxt/',
+    buildAssetsDir: '/tools/cid-tools-twitter-search-commands/_nuxt/',
   },
 
   nitro: {
