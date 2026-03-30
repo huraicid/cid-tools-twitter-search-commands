@@ -2,7 +2,6 @@ export default defineNuxtConfig({
   ssr: true,
 
   app: {
-    baseURL: '/tools/cid-tools-twitter-search-commands/',
     buildAssetsDir: '_nuxt/',
   },
 
