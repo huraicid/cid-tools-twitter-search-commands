@@ -124,6 +124,7 @@
 
 <script>
 import { ref, nextTick, onMounted } from 'vue';
+import '../assets/css/main.css';
 
 export default {
   setup() {
