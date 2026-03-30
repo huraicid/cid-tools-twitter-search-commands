@@ -37,7 +37,7 @@
 /* ダークモード */
 @media (prefers-color-scheme: dark) {
   body {
-    background: #111;
+    background: #121212;
     color: white;
   }
 }

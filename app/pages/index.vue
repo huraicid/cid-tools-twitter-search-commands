@@ -102,7 +102,7 @@
           </div>
         </div>
 
-        <div class="search-result mx-auto my-4 p-4">
+        <div class="search-result w-full sm:w-3/4 md:w-1/2 lg:w-1/3 max-w-full my-4 rounded mx-auto">
           <h2 class="subtitle mb-2">Search Command Result</h2>
           <textarea id="result" :value="result" @input="result = $event.target.value" class="w-full h-32 p-2 border border-gray-300 rounded"
             autocomplete="off" spellcheck="false" autocapitalize="off" name="result" readonly role="textbox" aria-label="Generated search command"></textarea>
@@ -118,7 +118,7 @@
     </div>
   </div>
   <footer class="text-center p-4">
-    <p class="text-sm text-gray-500">(C) 2025 huraicid. All rights reserved.</p>
+    <p class="text-sm text-gray-500">(C) 2026 huraicid. All rights reserved.</p>
   </footer>
 </template>
 
